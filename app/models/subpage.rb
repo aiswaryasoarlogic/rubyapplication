@@ -1,0 +1,2 @@
+class Subpage < ApplicationRecord
+end

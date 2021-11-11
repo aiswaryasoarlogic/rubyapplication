@@ -1,0 +1,16 @@
+#nonEditable{
+    border: 1px solid #ccc;
+box-shadow: 3px 3px 2px #ccc;
+transition: 0.5s; padding: 5%; color: rgb(33, 135, 231); padding-top: 0%; width: 80%; margin-top: 5%; margin-left: 10%; background-color: white;
+}
+#title1{
+    text-align: center; color: rgb(33, 135, 231)
+}
+#tab{
+    color: rgb(33, 135, 231)
+}
+#editable{
+    border: 1px solid #ccc;
+box-shadow: 3px 3px 2px #ccc;
+transition: 0.5s; padding: 5%; color: rgb(33, 135, 231); padding-top: 0%; width: 80%; margin-top: 5%; margin-left: 10%; background-color: white;
+}
