@@ -38,15 +38,26 @@ class SessionsController < ApplicationController
         end
     end
 
-            
+    def getuser
+        user = User.find(session[:user_id])
+        data = {
+                userdata: user
+            }
+        render json:data
+    end
 
     def update
         user = User.find(session[:user_id])
-        if user.update(user_params)
-            redirect_to '/dashboard'
+        if user.update(update_params)
+            data={
+                  updated: true
+              }
+              render json:data
         else
-            flash[:login_errors] = ['invalid credentials']
-            redirect_to '/dashboard'
+            data={
+                  updated: false
+              }
+              render json:data
         end
     end
 
@@ -62,6 +73,23 @@ class SessionsController < ApplicationController
         redirect_to '/admin', notice: "Logged out!"
     end
 
+    def listuser
+        userlist = User.all.order(created_at: :desc)
+        render json: userlist
+    end
+
+    def deleteuser
+        user = User.find(params[:userid])
+        # pages = Subpage.where(pageid: params[:pageid])
+        # pages.destroy_all
+        user.destroy
+        data={
+          deleted: true
+        }
+        render json:data
+    
+    end
+
     private
         def login_params
             params.require(:login).permit(:email, :password)
@@ -70,6 +98,12 @@ class SessionsController < ApplicationController
     private
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :profession, :image)
+
+        end
+
+    private
+        def update_params
+            params.require(:user).permit(:name, :email,  :phone, :profession, :address, :image)
 
         end
 

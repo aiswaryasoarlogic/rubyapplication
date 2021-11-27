@@ -338,6 +338,14 @@ import Navbar from "./Navbar";
 const drawerWidth = 240;
 
 function Dashboard(props) {
+
+  React.useEffect(() => {
+    if(!sessionStorage.getItem('userid')){
+      alert("Please login again!!")
+      props.history.push("/login")
+    }
+  }, []);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -356,11 +364,17 @@ function Dashboard(props) {
     //   }
         axios.get("http://localhost:3000/logout", {headers2})
         .then(res => {
-            console.log("logout res: ", res)
+            console.log("logout res: ", res.data.loggedIn)
+            if(res.data.loggedIn == true){
             sessionStorage.clear();
             props.history.push("/login")
+            }
+            else{
+              alert("invalid credentials!!")
+            }
         })
         .catch(err => {
+          alert("something went wrong!!")
             console.log("logout error: ", err)
         })
     }

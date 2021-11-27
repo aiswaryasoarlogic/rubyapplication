@@ -20,6 +20,10 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ListIcon from '@mui/icons-material/List';
+import ViewListIcon from '@mui/icons-material/ViewList';
+
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
@@ -28,6 +32,8 @@ import './styles/displaypage.css';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
+    background: '#2E3B55',
+    color: "white",
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -37,6 +43,8 @@ const openedMixin = (theme) => ({
 });
 
 const closedMixin = (theme) => ({
+    color: "white",
+    background: '#2E3B55',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -49,6 +57,8 @@ const closedMixin = (theme) => ({
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
+    color: "white",
+    background: '#2E3B55',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
@@ -77,6 +87,8 @@ const AppBar = styled(MuiAppBar, {
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
+    background: '#2E3B55',
+    color: "white",
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
@@ -94,7 +106,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 
-const Navbar = (props) => {
+const AdminNavbar = (props) => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const menuId = 'primary-search-account-menu';
@@ -124,7 +136,7 @@ const Navbar = (props) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() => handleprofile()}>Profile</MenuItem>
+      {/* <MenuItem onClick={() => handleprofile()}>Profile</MenuItem> */}
       <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
     </Menu>
   );
@@ -153,29 +165,29 @@ const Navbar = (props) => {
   }
 
   const handleLogout=()=>{
-    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-const headers2= {
-    'Content-Type': 'application/json',
-    'X-CSRF-Token': csrf
-    }
-    axios.get("http://localhost:3000/logout", {headers2})
-    .then(res => {
-        console.log("logout res: ", res)
+//     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+// const headers2= {
+//     'Content-Type': 'application/json',
+//     'X-CSRF-Token': csrf
+//     }
+//     axios.get("http://localhost:3000/logout", {headers2})
+//     .then(res => {
+//         console.log("logout res: ", res)
         sessionStorage.clear();
         localStorage.clear();
-        props.history.push("/login")
-        setAnchorEl(null);
-    })
-    .catch(err => {
-        console.log("logout error: ", err)
-    })
+        props.history.push("/adminlogin")
+    //     setAnchorEl(null);
+    // })
+    // .catch(err => {
+    //     console.log("logout error: ", err)
+    // })
 }
 
   
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar style={{ background: '#2E3B55' }} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -190,7 +202,7 @@ const headers2= {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" variant="h6" sx={{ flexGrow: 1 }} component="div">
-            Content Management System
+           Admin Panel
           </Typography>
           {/* <Button color="inherit" onClick={()=>{handleLogout()}}>Logout</Button> */}
           <IconButton
@@ -207,27 +219,27 @@ const headers2= {
         </Toolbar>
       </AppBar>
       {renderMenu}
-      <Drawer variant="permanent" open={open}>
+      <Drawer style={{ background: '#2E3B55' }} variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-        <ListItem button onClick = {() => handlePath('dashboard')} >
+        <List >
+        <ListItem button onClick = {() => handlePath('admindashboard')} >
             <ListItemIcon>
-              <InboxIcon />
+              <DashboardIcon style={{color: "white" }}/>
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Admin Dashboard" />
           </ListItem>
-          <ListItem button onClick = {() => handlePath('viewpage')} >
+          <ListItem button onClick = {() => handlePath('userslist')} >
             <ListItemIcon>
-              <InboxIcon />
+              <ViewListIcon style={{color: "white" }}/>
             </ListItemIcon>
-            <ListItemText primary="View Page" />
+            <ListItemText primary="Users List" />
           </ListItem>
-          <ListItem button onClick = {() => handlePath('seopage')} >
+          {/* <ListItem button onClick = {() => handlePath('seopage')} >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -238,7 +250,7 @@ const headers2= {
               <InboxIcon />
             </ListItemIcon>
             <ListItemText primary="Create Page" />
-          </ListItem>
+          </ListItem> */}
           
         </List>
         
@@ -248,4 +260,4 @@ const headers2= {
   );
 }
 
-export default withRouter(Navbar)
+export default withRouter(AdminNavbar)

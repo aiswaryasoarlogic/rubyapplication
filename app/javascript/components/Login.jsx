@@ -1,201 +1,3 @@
-// import React, {useState, useEffect} from 'react';
-// import axios from "axios";
-// import { withRouter } from 'react-router';
-// import {
-//     Button,
-//     TextField,
-//     Grid,
-//     Paper,
-//     AppBar,
-//     Typography,
-//     Toolbar,
-//     Link,
-//   } from "@mui/material";
-//   import "./login.css"
-  
-
-// const Login = (props) => {
-
-//     // useEffect(() => {
-//     //     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-//     //     setToken(csrf)
-//     //     const headers= {
-//     //         'Content-Type': 'application/json',
-//     //         'X-CSRF-Token': csrf
-//     //       }
-//     //       console.log("check token: ", csrf)
-//     //       const reqData = {
-//     //           test: "value"
-//     //       }
-//     //     axios.post("http://localhost:3000/check", reqData, {headers})
-//     //     .then(res => {
-//     //         if(res.data.loggedIn){
-//     //             setLogged(true)
-//     //         }
-//     //         console.log("Res: ", res)
-//     //     })
-//     //     .catch(err => {
-//     //         console.log("Error: ", err)
-//     //     })
-//     //     // Update the document title using the browser API
-        
-//     //   }, []);
-
-//       const [email, setEmail] = useState("");
-//       const [password, setPassword] = useState("");
-
-//       const handlePassword = (e) => {
-//           setPassword(e.currentTarget.value)
-//       }
-
-//       const handleEmail = (e) => {
-//         setEmail(e.currentTarget.value)
-//     }
-
-    
-
-//     const handleLogin = () => {
-//         const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-//     const headers= {
-//         'Content-Type': 'application/json',
-//         'X-CSRF-Token': csrf
-//       }
-//     const data = {
-//         "login": {
-//             "email": email,
-//             "password": password
-//         }
-//     }
-//         axios.post("http://localhost:3000/sessions", data, {headers})
-//         .then(res => {
-//             if(res.data.loggedIn){
-//                 props.history.push("/dashboard")
-//             }
-//             console.log("Logged In res: ", res)
-//         })
-//         .catch(err => {
-//             console.log("Error in login: ", err)
-//         })
-//     }
-
-//     const handleLogout=()=>{
-//         const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-//     const headers= {
-//         'Content-Type': 'application/json',
-//         'X-CSRF-Token': csrf
-//       }
-//       const data = {
-//           'authenticity_token': csrf
-//       }
-//         axios.delete("http://localhost:3000/users/sign_out",data, {headers})
-//         .then(res => {
-//             console.log("logout res: ", res)
-//         })
-//         .catch(err => {
-//             console.log("logout error: ", err)
-//         })
-//     }
-
-//     return (
-//         // <div>
-//         //     <h1>Welcome to login page </h1>
-            
-//         //     <label for="email">Email:</label><br/>
-//         //     <input type="text" onChange = {(e) => { handleEmail(e)}} id="email" name="email" placeholder="email"/><br/>
-//         //     <label for="email">Password:</label><br/>
-//         //     <input type="text" onChange={(e) => handlePassword(e)} id="password" name="password" placeholder="password"/><br/>
-            
-
-//         //     <button onClick = {() => {handleLogin()}}>Login</button>
-//         // </div>
-
-//         <div>
-//       <AppBar position="static" alignitems="center" color="primary">
-//         <Toolbar>
-//           <Grid container justify="center" wrap="wrap">
-//             <Grid item>
-//               <Typography variant="h6">CMS APP</Typography>
-//             </Grid>
-//           </Grid>
-//         </Toolbar>
-//       </AppBar>
-//       <Grid container spacing={0} justify="center" direction="row">
-//         <Grid item>
-//           <Grid
-//             container
-//             direction="column"
-//             justify="center"
-//             spacing={2}
-//             className="login-form"
-//           >
-//       <Paper
-//         variant="elevation"
-//         elevation={2}
-//         className="login-background"
-//       >
-//         <Grid item>
-//           <Typography component="h1" variant="h5">
-//             Sign in
-//           </Typography>
-//         </Grid>
-//         <br/>
-//         <Grid item>
-//           <form onSubmit={this.handleSubmit}>
-//             <Grid container direction="column" spacing={2}>
-//             <Grid item>
-//               <TextField
-//                 type="email"
-//                 placeholder="Email"
-//                 fullWidth
-//                 name="username"
-//                 variant="outlined"
-//                 value={this.state.username}
-//                 onChange = {(e) => { handleEmail(e)}}
-//                 required
-//                 autoFocus
-//               />
-//   </Grid>
-//   <Grid item>
-//   <TextField
-//   type="password"
-//   placeholder="Password"
-//   fullWidth
-//   name="password"
-//   variant="outlined"
-//   value={this.state.password}
-//   onChange={(e) => handlePassword(e)}
-//   required
-//   />
-//   </Grid>
-//   <Grid item>
-//   <Button
-//   variant="contained"
-//   color="primary"
-//   type="submit"
-//   className="button-block"
-//   onClick = {() => {handleLogin()}}
-//   >
-//   Submit
-//   </Button>
-//   </Grid>
-//   </Grid>
-//   </form>
-//   </Grid>
-//   <Grid item>
-//   <Link href="#" variant="body2">
-//   Forgot Password?
-//   </Link>
-//   </Grid>
-//   </Paper>
-//   </Grid>
-//   </Grid>
-//   </Grid>
-//   </div>
-//     )
-// }
-
-// export default withRouter(Login);
-
 import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -206,7 +8,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -231,17 +32,21 @@ const theme = createTheme();
 
 const Login = (props) => {
     const [email, setEmail] = useState("");
-          const [password, setPassword] = useState("");
-    
+    const [password, setPassword] = useState("");
+    const [emptyEmail, setEmptyEmail] = useState(false);
+    const [emptyPassword, setEmptyPassword] = useState(false);
           const handlePassword = (e) => {
               setPassword(e.currentTarget.value)
+              setEmptyPassword(false);
           }
     
           const handleEmail = (e) => {
             setEmail(e.currentTarget.value)
+            setEmptyEmail(false);
         }
     
   const handleSubmit = (event) => {
+
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
@@ -252,6 +57,13 @@ const Login = (props) => {
   };
 
   const handleLogin = () => {
+    if(email == "" ){
+      setEmptyEmail(true)
+    }
+    else if(password == ""){
+      setEmptyPassword(true)
+    }
+    else{
             const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
         const headers= {
             'Content-Type': 'application/json',
@@ -269,11 +81,15 @@ const Login = (props) => {
                   sessionStorage.setItem("userid", res.data.userId)
                     props.history.replace("/dashboard")
                 }
+                else{
+                  alert("invalid credentials!!")
+                }
                 console.log("Logged In res: ", res)
             })
             .catch(err => {
                 console.log("Error in login: ", err)
             })
+          }
         }
 
   return (
@@ -297,37 +113,19 @@ const Login = (props) => {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid> */}
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
+        
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   id="email"
+                  type="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
                   onChange = {(e) => { handleEmail(e)}}
                 />
+                {emptyEmail && <span style={{color: "red"}}>Pleasr enter email</span>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -340,6 +138,7 @@ const Login = (props) => {
                   autoComplete="new-password"
                   onChange={(e) => handlePassword(e)}
                 />
+                {emptyPassword && <span style={{color: "red"}}>Please enter password</span>}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -359,8 +158,8 @@ const Login = (props) => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/registration" variant="body2">
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>

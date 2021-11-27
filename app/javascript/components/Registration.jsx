@@ -226,6 +226,13 @@ const initialValues = {
           };
     
           const [logged, setLogged] = useState(false);
+          const [nameError, setNameError] = useState(false);
+          const [emailError, setEmailError] = useState(false);
+          const [passwordError, setPasswordError] = useState(false);
+          const [confirmpwdError, setConfirmpwdError] = useState(false);
+          const [phoneError, setPhoneError] = useState(false);
+          const [professionError, setProfessionError] = useState(false);
+
           const [token, setToken] = useState("false");
     
           const [values, setValues] = useState(initialValues);
@@ -256,8 +263,7 @@ const initialValues = {
           }, []);
     
           const handleInputChange = (e) => {
-            //const name = e.target.name 
-            //const value = e.target.value 
+            e.target.name == "name" ? setNameError(false) : e.target.name == "email" ? setEmailError(false) : e.target.name == "password" ? setPasswordError(false) : e.target.name == "password_confirmation" ? setConfirmpwdError(false) : e.target.name == "phone" ? setPhoneError(false) : setProfessionError(false)
             const { name, value } = e.target;
         
             setValues({
@@ -267,10 +273,22 @@ const initialValues = {
           };
     
         
-       
+       const handleRegistration = () => {
+
+        values.name == "" ? setNameError(true) : values.email == "" ? setEmailError(true) : values.password == "" ? setPasswordError(true) : values.password_confirmation == "" ? setConfirmpwdError(true) : values.phone == "" ? setPhoneError(true) : values.profession == "" ? setProfessionError(true) : handleSubmitRegistration()
+       }
     
-        const handleRegistration = () => {
-    
+        const handleSubmitRegistration = () => {
+
+          
+
+          if(values.password != values.password_confirmation){
+            alert("password not matching")
+          }
+          // else if (values.name === ""){
+          //   setNameError(true)
+          // }
+          else{
             // const csrf2 = document.querySelector("meta[name='csrf-token']").getAttribute("content");
         const headers= {
             'Content-Type': 'application/json',
@@ -300,6 +318,7 @@ const initialValues = {
             .catch(err => {
                 console.log("Error in login: ", err)
             })
+          }
         }
 
   return (
@@ -327,14 +346,18 @@ const initialValues = {
               <Grid item xs={12}>
                 <TextField
                   required
+                  // id="filled-basic"
+                  // variant="filled" 
                   fullWidth
-                  id="name"
+                  // id="name"
                   label="Full Name"
+                  type="email"
                   name="name"
-                  autoComplete="name"
+                  // autoComplete="name"
                   autoFocus
                   onChange={handleInputChange}
                 />
+                {nameError && <span style={{color: "red"}}> Please enter full name</span>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -347,6 +370,7 @@ const initialValues = {
                   autoComplete="email"
                   onChange={handleInputChange}
                 />
+                {emailError && <span style={{color: "red"}}> Please enter email</span> }
               </Grid>
 
                <Grid item xs={12} sm={6}>
@@ -361,6 +385,7 @@ const initialValues = {
                   
                   onChange={handleInputChange}
                 />
+                {passwordError && <span style={{color: "red"}}> Please enter Password</span>}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -373,21 +398,25 @@ const initialValues = {
                   autoComplete="password"
                   onChange={handleInputChange}
                 />
+                {confirmpwdError && <span style={{color: "red"}}> Please enter confirm password</span>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
+                  type="email"
                   name="phone"
                   label="Phone No. "
                   id="phone"
                   autoComplete="phone"
                   onChange={handleInputChange}
                 />
+                {phoneError && <span style={{color: "red"}}> Please enter phone No.</span>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
+                  type="email"
                   fullWidth
                   name="profession"
                   label="Profession"
@@ -395,6 +424,7 @@ const initialValues = {
                   autoComplete="profession"
                   onChange={handleInputChange}
                 />
+                {professionError && <span style={{color: "red"}}> Please enter profession</span>}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel

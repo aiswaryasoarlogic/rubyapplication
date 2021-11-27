@@ -115,6 +115,11 @@ const Displaysubpage = (props) => {
 
 
   React.useEffect(() => {
+    if(!sessionStorage.getItem('userid')){
+      alert("Please login again!!")
+      props.history.push("/login")
+    }
+    else{
 
     const id = localStorage.getItem("subpageid");
     console.log("ID: ", id);
@@ -150,6 +155,7 @@ const Displaysubpage = (props) => {
     .catch(err => {
         console.log("Error: ", err)
     })
+  }
     
   }, [editable]);
 

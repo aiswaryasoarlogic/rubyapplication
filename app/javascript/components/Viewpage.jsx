@@ -103,6 +103,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   const ViewPage = (props) => {
 
   React.useEffect(() => {
+    if(!sessionStorage.getItem('userid')){
+      alert("Please login again!!")
+      props.history.push("/login")
+    }
+    else{
 
     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const headers= {
@@ -119,6 +124,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     .catch(err => {
         console.log("Error in login: ", err)
     })
+  }
   }, [])
 
   const theme = useTheme();

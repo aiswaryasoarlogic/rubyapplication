@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post '/getpage', to: 'createpages#show'
       post '/updatepage', to: 'createpages#updatepage'
       post '/deletepage', to: 'createpages#destroy'
+      get '/listuser', to: 'sessions#listuser'
       # get '/'
     end
   end
@@ -30,6 +31,10 @@ Rails.application.routes.draw do
   root 'homepage#index'
   get '/*path' => 'homepage#index'
   post "/check", to: "sessions#checklogged"
+  post '/userdata', to: "sessions#getuser"
+  post '/updateuser', to: "sessions#update"
+  post '/users/listuser', to: 'sessions#listuser'
+  post '/deleteuser', to: 'sessions#deleteuser'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 

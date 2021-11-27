@@ -124,6 +124,11 @@ const handlesubpage = (subpageid) => {
   // setSubpage(true)
 }
   React.useEffect(() => {
+    if(!sessionStorage.getItem('userid')){
+      alert("Please login again!!")
+      props.history.push("/login")
+    }
+    else{
 
     if(subpage)
     {
@@ -224,7 +229,7 @@ const handlesubpage = (subpageid) => {
     })
 
 
-
+  }
   }
     
   }, [editable,subpage]);
