@@ -21,13 +21,18 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-  username: postgres
-  password: 999362
-  host: localhost
+  # username: postgres
+  # password: 999362
+  # host: localhost
+
+  host: ec2-54-144-165-97.compute-1.amazonaws.com
+  username: drjjtnqwtjofmb
+  password: 25dca367d0f06073473ba08f56dd8b769587e2f72d07958f38a3d3147e857c81
 
 development:
   <<: *default
-  database: rubyapplication_development
+  # database: rubyapplication_development
+  database: d94oovs1c8eeas
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,7 +66,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rubyapplication_test
+  # database: rubyapplication_test
+  database: d94oovs1c8eeas
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,6 +91,8 @@ test:
 #
 production:
   <<: *default
-  database: rubyapplication_production
-  username: rubyapplication
+  # database: rubyapplication_production
+  # username: rubyapplication
+  database: d94oovs1c8eeas
+  username: drjjtnqwtjofmb
   password: <%= ENV['RUBYAPPLICATION_DATABASE_PASSWORD'] %>
