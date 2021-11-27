@@ -308,7 +308,7 @@ const initialValues = {
         }
     
     
-            axios.post("http://localhost:3000/users", data1, {headers})
+            axios.post("https://reactrubycms.herokuapp.com:3000/users", data1, {headers})
             .then(res => {
                 if(res.data.registered){
                     props.history.push("/login")
