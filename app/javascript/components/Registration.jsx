@@ -292,7 +292,8 @@ const initialValues = {
             // const csrf2 = document.querySelector("meta[name='csrf-token']").getAttribute("content");
         const headers= {
             'Content-Type': 'application/json',
-            'X-CSRF-Token': token
+            'X-CSRF-Token': token,
+            "Access-Control-Allow-Origin": "*"
           }
           console.log("Token: ", token)
     
