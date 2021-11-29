@@ -237,30 +237,30 @@ const initialValues = {
     
           const [values, setValues] = useState(initialValues);
     
-          useEffect(() => {
-            const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-            setToken(csrf)
-            const headers= {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': csrf
-              }
-              console.log("check token: ", csrf)
-              const reqData = {
-                  test: "value"
-              }
-            axios.post("http://localhost:3000/check", reqData, {headers})
-            .then(res => {
-                if(res.data.loggedIn){
-                    setLogged(true)
-                }
-                console.log("Res: ", res)
-            })
-            .catch(err => {
-                console.log("Error: ", err)
-            })
-            // Update the document title using the browser API
+          // useEffect(() => {
+          //   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+          //   setToken(csrf)
+          //   const headers= {
+          //       'Content-Type': 'application/json',
+          //       'X-CSRF-Token': csrf
+          //     }
+          //     console.log("check token: ", csrf)
+          //     const reqData = {
+          //         test: "value"
+          //     }
+          //   axios.post("http://localhost:3000/check", reqData, {headers})
+          //   .then(res => {
+          //       if(res.data.loggedIn){
+          //           setLogged(true)
+          //       }
+          //       console.log("Res: ", res)
+          //   })
+          //   .catch(err => {
+          //       console.log("Error: ", err)
+          //   })
+          //   // Update the document title using the browser API
             
-          }, []);
+          // }, []);
     
           const handleInputChange = (e) => {
             e.target.name == "name" ? setNameError(false) : e.target.name == "email" ? setEmailError(false) : e.target.name == "password" ? setPasswordError(false) : e.target.name == "password_confirmation" ? setConfirmpwdError(false) : e.target.name == "phone" ? setPhoneError(false) : setProfessionError(false)
@@ -290,12 +290,13 @@ const initialValues = {
           // }
           else{
             // const csrf2 = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+            const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
         const headers= {
             'Content-Type': 'application/json',
-            'X-CSRF-Token': token,
+            'X-CSRF-Token': csrf,
             "Access-Control-Allow-Origin": "*"
           }
-          console.log("Token: ", token)
+          console.log("Token: ", csrf)
     
           const data1 = {
             "user": {
